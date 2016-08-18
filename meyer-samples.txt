@@ -1,0 +1,14 @@
+# From table S6, p 103, of Supp Mat,
+# Meyer et al. 2012. Science 338(6104): 222-226.
+#pop       id
+Dinka      DNK02
+Mbuti      HGDP00456
+French     HGDP00521
+Papuan     HGDP00542
+Sardinian  HGDP00665
+Han        HGDP00778
+Yoruba     HGDP00927
+Karitiana  HGDP00998
+San        HGDP01029
+Mandenka   HGDP01284
+Dai        HGDP01307

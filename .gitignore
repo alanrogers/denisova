@@ -1,0 +1,15 @@
+*.vcf
+*.gz
+*.bcf
+*.bed
+*.bam
+*.sam
+*.bgz
+*.csi
+*~
+*.daf
+*.gtp
+*.tbi
+*.bai
+genetic_map_chr*.txt
+hotspots_*.txt
