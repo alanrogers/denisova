@@ -1,3 +1,13 @@
 # Data from Meyer et al paper on high-coverage Denisovan genome
 wget -r --no-parent -A "T_hg19_1000g.*.mod.vcf.gz*" \
   http://cdna.eva.mpg.de/denisova/VCF/hg19_1000g/
+
+#Download chr 22 files
+wget http://cdna.eva.mpg.de/denisova/VCF/hg19_1000g/T_hg19_1000g.22.mod.vcf.gz
+wget http://cdna.eva.mpg.de/denisova/VCF/hg19_1000g/T_hg19_1000g.22.mod.vcf.gz.tbi
+
+# Make a tiny subset of the vcf file, for use in debugging
+# Range of positions in the filtered vcf file 22:16050408-51243297
+# We'll be extracting at just 2 Mb
+
+bcftools view --output-file ../denisova-2Mb.vcf -M2 -v snps --exclude 'QUAL<30 & MQ<30' --regions 22:20000000-22000000 T_hg19_1000g.22.mod.vcf.gz
