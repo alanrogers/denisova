@@ -1,4 +1,7 @@
 # Data from Meyer et al paper on high-coverage Denisovan genome
+wget -r --no-parent -A "T_hg19_1000g.*.mod.vcf.gz*" \
+  http://cdna.eva.mpg.de/denisova/VCF/hg19_1000g/
+
 #Download chr 22 files
 wget http://cdna.eva.mpg.de/denisova/VCF/hg19_1000g/T_hg19_1000g.22.mod.vcf.gz
 wget http://cdna.eva.mpg.de/denisova/VCF/hg19_1000g/T_hg19_1000g.22.mod.vcf.gz.tbi
