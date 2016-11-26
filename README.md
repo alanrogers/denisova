@@ -4,7 +4,6 @@ Denisovan genome
 
 # Download minimal filter
 wget https://bioinf.eva.mpg.de/altai_minimal_filters/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz
-wget https://bioinf.eva.mpg.de/altai_minimal_filters/AltaiNea.map35_99.MQ30.Cov.indels.TRF.bed.bgz
 
 # Create a bed file for just chr 22
 
