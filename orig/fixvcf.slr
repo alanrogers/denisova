@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -J fixden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o fixvcf.out # stdout
+#SBATCH -e fixvcf.err # stderr
+
+# Fix malformed vcf files
+ls *.mod.vcf.gz | xargs -P 32 -n 1 bash fixvcf.sh

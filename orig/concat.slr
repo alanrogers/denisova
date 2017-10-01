@@ -8,7 +8,7 @@
 #SBATCH -o concat.out # stdout
 #SBATCH -e concat.err # stderr
 
-fmt="DenisovaPinky.hg19_1000g.%s.mod.vcf.gz\n"
+fmt="DenisovaPinky.hg19_1000g.%s.mod-fixed.vcf.gz\n"
 # concatenate autosomes
 bcftools concat --file-list <(seq 22 | sort | xargs printf ${fmt} ) \
   --threads 32 --output-type b --output denisova.bcf
