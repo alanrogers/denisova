@@ -9,6 +9,6 @@
 #SBATCH -e filter.err # stderr
 
 bed="../bed/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz"
-vcf="denisova.bcf"
+vcf="denisova.vcf.bgz"
 ofile="denisova-filtered.vcf.bgz"
-bcftools view ${vcf} | bedvcf <(zcat ${bed}) | bgzip > ${ofile}
+zcat ${vcf} | bedvcf <(zcat ${bed}) | bgzip > ${ofile}

@@ -10,5 +10,9 @@
 # This script adds a definition of LowQual and replaces the
 # string "\t.;" with "\t". In other words, It deletes ".;" at 
 # the beginning of a field.
+#
+# 2017-10-01: added lines that replace ";.;" with ";" and ";.\t" w/ "\t".
 1a ##FILTER=<ID=LowQual,Description="Low quality">
 /	\.;/s//	/
+/;\.;/s//;/g
+/;\.	/s//	/

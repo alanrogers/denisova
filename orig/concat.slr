@@ -11,5 +11,5 @@
 fmt="DenisovaPinky.hg19_1000g.%s.mod-fixed.vcf.gz\n"
 # concatenate autosomes
 bcftools concat --file-list <(seq 22 | sort | xargs printf ${fmt} ) \
-  --threads 32 --output-type b --output denisova.bcf
+  --output-type v | bgzip > denisova.vcf.bgz
 
