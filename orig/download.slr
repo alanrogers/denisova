@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH -J dlden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o download.out # stdout
+#SBATCH -e download.err # stderr
+
+# vcf files
+fmt="http://cdna.eva.mpg.de/neandertal/altai/Denisovan/DenisovaPinky.hg19_1000g.%s.mod.vcf.gz\n"
+seq 22 | xargs printf ${fmt} | xargs wget
+
+# index files
+fmt="http://cdna.eva.mpg.de/neandertal/altai/Denisovan/DenisovaPinky.hg19_1000g.%s.mod.vcf.gz.tbi\n"
+seq 22 | xargs printf ${fmt} | xargs wget
+
