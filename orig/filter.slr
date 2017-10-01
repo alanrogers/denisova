@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH -J fildenr
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o filter.out # stdout
+#SBATCH -e filter.err # stderr
+
+bed="../bed/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz"
+vcf="denisova.bcf"
+ofile="denisova-filtered.vcf.bgz"
+bcftools view ${vcf} | bedvcf <(zcat ${bed}) | bgzip > ${ofile}
