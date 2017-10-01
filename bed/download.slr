@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -J dload
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o download.out # stdout
+#SBATCH -e download.err # stderr
+
+# Bed file for filtering Denisovan genome
+wget https://bioinf.eva.mpg.de/altai_minimal_filters/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz
