@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J fildenr
+#SBATCH -J filden
 #SBATCH --account=rogersa-kp
 #SBATCH --partition=rogersa-kp
 #SBATCH --time=10:00:00
