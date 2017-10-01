@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH -J catden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o concat.out # stdout
+#SBATCH -e concat.err # stderr
+
+fmt="DenisovaPinky.hg19_1000g.%s.mod.vcf.gz\n"
+# concatenate autosomes
+bcftools concat --file-list <(seq 22 | sort | xargs printf ${fmt} ) \
+  --threads 32 --output-type b --output denisova.bcf
+
