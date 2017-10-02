@@ -1,7 +1,39 @@
-# Data from Meyer et al paper on high-coverage Denisovan genome
+# Meyer et al high-coverage Denisovan genome
 
 # Download
 
     sbatch download.slr
 
+# Count lines in genome files
+        sbatch nufixed.slr
 
+Number of sites: 2,682,416,704
+
+# Fix malformed vcf files to make *-fixed.vcf.gz
+    sbatch fixvcf.slr  
+
+################################################################
+
+# Count lines in fixed files    
+        sbatch nfixed.slr
+
+Number of sites: 
+
+# Concatenate autosomes to make denisova.vcf.bgz
+    sbatch concat.slr
+
+# Count lines in concatenated file
+        sbatch nconcat.slr
+
+Number of sites: 
+
+# Filter using bed file to make denisova-filtered.vcf.bgz
+    sbatch filter.slr
+
+# Count lines in filtered file
+        sbatch nfiltered.slr
+
+Number of sites: 
+
+# Create altai.daf
+    sbatch daf.slr

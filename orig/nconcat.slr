@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -J ncat
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o nconcat.txt # stdout
+#SBATCH -e nconcat.err # stderr
+
+ifile=denisova.vcf.bgz
+bcftools query -f'%CHROM\n' ${ifile} | wc -l
