@@ -35,3 +35,8 @@ Number of sites: 1,645,395,146
 
 # Create altai.daf
     sbatch daf.slr
+
+daf: 1,599,646,733 good sites; 36,979,533 rejected
+daf: bad sites with multiple alt alleles: 540
+daf: bad sites with multiple ancestral alleles: 507925
+daf: bad sites with missing ancestral alleles: 36471073
