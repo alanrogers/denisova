@@ -5,35 +5,33 @@
     sbatch download.slr
 
 # Count lines in genome files
-        sbatch nufixed.slr
+    sbatch nufixed.slr
 
 Number of sites: 2,682,416,704
 
 # Fix malformed vcf files to make *-fixed.vcf.gz
     sbatch fixvcf.slr  
 
-################################################################
-
 # Count lines in fixed files    
-        sbatch nfixed.slr
+    sbatch nfixed.slr
 
-Number of sites: 
+Number of sites: 2,682,416,704
 
 # Concatenate autosomes to make denisova.vcf.bgz
     sbatch concat.slr
 
 # Count lines in concatenated file
-        sbatch nconcat.slr
+    sbatch nconcat.slr
 
-Number of sites: 
+Number of sites: 2,682,416,704
 
 # Filter using bed file to make denisova-filtered.vcf.bgz
     sbatch filter.slr
 
 # Count lines in filtered file
-        sbatch nfiltered.slr
+    sbatch nfiltered.slr
 
-Number of sites: 
+Number of sites: 1,645,395,146
 
 # Create altai.daf
     sbatch daf.slr

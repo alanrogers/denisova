@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J dafden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o denisova.daf # stdout
+#SBATCH -e daf.err # stderr
+
+# Generate data for analysis. Output looks like
+# 22,20006558,G,G/G
+# 22,20006574,G,A/A
+# 22,20006992,A,C/C
+# Columns are chr, pos, ref, alt, ancestral_allele, genotypes...
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/CAnc[\t%GT]\n' \
+  denisova-filtered.vcf.bgz | daf
+
+
