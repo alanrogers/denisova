@@ -8,5 +8,4 @@
 #SBATCH -o tabraw.txt # stdout
 #SBATCH -e tabraw.err # stderr
 
-ls *hg19*.mod.vcf.gz | xargs -n 1 bcftools query -f '[%GT ]\n' \
-  | awk -f tabgtype.awk
+zcat *hg19*.mod.vcf.gz | xargs -n 1 ./vcfgtype.py | awk -f tabgtype.awk

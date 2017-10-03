@@ -5,10 +5,9 @@
 #SBATCH --time=10:00:00
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
-#SBATCH -o filter.out # stdout
+#SBATCH -o denisova-filtered.vcf.bgz # output file
 #SBATCH -e filter.err # stderr
 
 bed="../bed/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz"
 vcf="denisova.vcf.bgz"
-ofile="denisova-filtered.vcf.bgz"
-zcat ${vcf} | bedvcf <(zcat ${bed}) | bgzip > ${ofile}
+bedtools intersect -header -sorted -a ${vcf} -b ${bed} | bgzip

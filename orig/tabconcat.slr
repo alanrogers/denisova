@@ -1,0 +1,11 @@
+#!/bin/bash
+#SBATCH -J tabcat
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o tabconcat.txt # stdout
+#SBATCH -e tabconcat.err # stderr
+
+zcat denisova.vcf.bgz | ./vcfgtype.py | awk -f tabgtype.awk
