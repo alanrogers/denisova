@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -J tabfil
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o tabfiltered.txt # stdout
+#SBATCH -e tabfiltered.err # stderr
+
+bcftools query -f '[%GT ]\n' denisova-filtered.vcf.bgz \
+  | awk -f tabgtype.awk

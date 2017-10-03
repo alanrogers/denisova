@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -J tabraw
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o tabraw.txt # stdout
+#SBATCH -e tabraw.err # stderr
+
+ls *hg19*.mod.vcf.gz | xargs -n 1 bcftools query -f '[%GT ]\n' \
+  | awk -f tabgtype.awk
