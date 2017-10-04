@@ -7,5 +7,4 @@ for line in sys.stdin:
 
     # loop over genotypes
     for gtype in line[9:]:
-        gtype = gtype.split(":")
-        print gtype[0]
+        print gtype[0:3]
