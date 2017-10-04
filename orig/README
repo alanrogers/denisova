@@ -25,6 +25,15 @@ Number of sites: 2,682,416,704
 
 Number of sites: 2,682,416,704
 
+# Tabulate genotypes to produce tabconcat.txt
+    sbatch tabconcat.slr
+
+1/1 4169135
+1/2 4778
+0/0 2611580063
+./. 64853834
+0/1 1808894
+
 # Filter using bed file to make denisova-filtered.vcf.bgz
     sbatch filter.slr
 
@@ -32,6 +41,14 @@ Number of sites: 2,682,416,704
     sbatch nfiltered.slr
 
 Number of sites: 1,645,395,146
+
+# Tabulate genotypes into tabfiltered
+    sbatch tabfiltered.txt
+
+1/1 2208935
+1/2 540
+0/0 1642805597
+0/1 380074
 
 # Create altai.daf
     sbatch daf.slr
