@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -J dupden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o denisova-dedup.vcf.gz
+#SBATCH -e dedup.err # stderr
+
+vcf=denisova-nolow.vcf.gz
+bcftools norm --rm-dup any -O z --threads 5 ${vcf}

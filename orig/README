@@ -50,6 +50,12 @@ Number of sites: 1,645,395,146
 0/0 1642805597
 0/1 380074
 
+# Remove LowQual sites
+    sbatch lowqual.slr
+
+# Remove duplicate sites
+    sbatch dedup.slr
+
 # Create altai.daf
     sbatch daf.slr
 
