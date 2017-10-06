@@ -9,6 +9,6 @@
 #SBATCH -e daf.err # stderr
 
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/CAnc[\t%GT]\n' \
-  denisova-nolow.vcf.gz | daf
+  denisova-dedup.vcf.gz | daf
 
 
