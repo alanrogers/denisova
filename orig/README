@@ -37,6 +37,16 @@ Number of sites: 2,682,416,704
 # Filter using bed file to make denisova-filtered.vcf.bgz
     sbatch filter.slr
 
+# To do: add step 
+# bcftools norm -m -any foo.vcf.gz | \
+# bcftools view --include 'TYPE="snp"' | \
+# bcftools norm -m +snps | \
+# bcftools query -f '%POS %REF %ALT %TYPE\n' | less
+#
+# But even with snps, individual alleles can have multiple characters.
+# I either need to accomodate these in daf.c, or figure out a pipeline
+# that re-expresses them as single characters.
+
 # Count lines in filtered file
     sbatch nfiltered.slr
 
