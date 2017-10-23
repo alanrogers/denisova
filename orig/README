@@ -43,9 +43,11 @@ Number of sites: 2,682,416,704
 # bcftools norm -m +snps | \
 # bcftools query -f '%POS %REF %ALT %TYPE\n' | less
 #
-# But even with snps, individual alleles can have multiple characters.
-# I either need to accomodate these in daf.c, or figure out a pipeline
-# that re-expresses them as single characters.
+# The pipeline above would remove indels and collapse snps into a
+# single record.  It might be best to remove sites that include an indel:
+# bcftools norm -m +any | \
+# bcftools view --include 'TYPE="snp"'
+
 
 # Count lines in filtered file
     sbatch nfiltered.slr
