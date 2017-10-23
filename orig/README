@@ -37,17 +37,10 @@ Number of sites: 2,682,416,704
 # Filter using bed file to make denisova-filtered.vcf.bgz
     sbatch filter.slr
 
-# To do: add step 
-# bcftools norm -m -any foo.vcf.gz | \
-# bcftools view --include 'TYPE="snp"' | \
-# bcftools norm -m +snps | \
-# bcftools query -f '%POS %REF %ALT %TYPE\n' | less
-#
-# The pipeline above would remove indels and collapse snps into a
-# single record.  It might be best to remove sites that include an indel:
+# To do: add step to remove sites other than snps and also those
+# marked as "LowQual".
 # bcftools norm -m +any | \
-# bcftools view --include 'TYPE="snp"'
-
+# bcftools view --include 'TYPE="snp" & FILTER!="LowQual"'
 
 # Count lines in filtered file
     sbatch nfiltered.slr
