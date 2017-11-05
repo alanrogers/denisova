@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH -J rafden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=10:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o denisova.raf # stdout
+#SBATCH -e raf.err # stderr
+
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' \
+  denisova-dedup.vcf.gz | raf
+
+
