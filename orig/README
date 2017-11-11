@@ -39,8 +39,9 @@ Number of sites: 2,682,416,704
 
 # To do: add step to remove sites other than snps and also those
 # marked as "LowQual".
-# bcftools norm -m +any | \
-# bcftools view --include 'TYPE="snp" & FILTER!="LowQual"'
+# bcftools norm -multiallelics +any | \
+# bcftools view --include 'TYPE!~"indel" & MQ>=30 & FILTER!="LowQual"' | \
+# bcftools norm --rm-dup any -O z --threads 5
 
 # Count lines in filtered file
     sbatch nfiltered.slr
