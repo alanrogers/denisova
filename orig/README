@@ -22,34 +22,14 @@ Number of sites: 2,682,416,704
 # Concatenate autosomes to make denisova.vcf.bgz
     sbatch concat.slr
 
-# Count lines in concatenated file
-    sbatch nconcat.slr
-
-Number of sites: 2,682,416,704
-
-# Tabulate genotypes to produce tabconcat.txt
-    sbatch tabconcat.slr
-
-1/1 4169135
-1/2 4778
-0/0 2611580063
-./. 64853834
-0/1 1808894
-
 # To do: add step to remove sites other than snps and also those
 # marked as "LowQual".
 # bcftools norm -multiallelics +any | \
 # bcftools view --include 'TYPE="snpl" & MQ>=30 & FILTER!="LowQual"' | \
 # bcftools norm --rm-dup any -O z --threads 5
 
-# Remove LowQual sites
-    sbatch lowqual.slr
-
-# Remove duplicate sites
-    sbatch dedup.slr
-
-# Create altai.daf
-    sbatch daf.slr
+# Create .raf.gz file
+    sbatch mkraf.slr
 
 daf: 1,599,646,733 good sites; 36,979,533 rejected
 daf: bad sites with multiple alt alleles: 540
