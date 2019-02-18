@@ -1,6 +1,8 @@
 # Meyer et al high-coverage Denisovan genome
 
 # Download
+# Makes: DenisovaPinky.hg19_1000g.1.mod.vcf.gz,
+# DenisovaPinky.hg19_1000g.1.mod.vcf.gz.tbi, etc
 
     sbatch download.slr
 
