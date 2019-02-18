@@ -26,5 +26,5 @@ bcftools filter --SnpGap 7 --include 'TYPE="snp"' -Ou |
 # print in format required by raf
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' |
 
-# generate raf .raf.gz file
+# generate .raf.gz file
 raf | gzip -c
