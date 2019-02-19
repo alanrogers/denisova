@@ -31,7 +31,5 @@ Number of sites: 2,682,416,704
 # Create .raf.gz file
     sbatch mkraf.slr
 
-daf: 1,599,646,733 good sites; 36,979,533 rejected
-daf: bad sites with multiple alt alleles: 540
-daf: bad sites with multiple ancestral alleles: 507925
-daf: bad sites with missing ancestral alleles: 36471073
+raf: 1,645,394,587 good sites; 540 rejected
+raf: bad sites with multiple alt alleles: 540
