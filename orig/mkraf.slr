@@ -10,6 +10,7 @@
 
 bed="../bed/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz"
 vcf="denisova.vcf.bgz"
+ref=$HOME/group/rogers/data/hg19/hg19-sort.fa.gz
 
 # keep only sites listed in bed file
 bedtools intersect -header -sorted -a ${vcf} -b ${bed} |
@@ -18,7 +19,7 @@ bedtools intersect -header -sorted -a ${vcf} -b ${bed} |
 bcftools annotate --remove "FORMAT/PL,^INFO/DP,INFO/MQ" -Ou |
 
 # Combine lines that refer to different alleles at a single position
-bcftools norm --multiallelics +any -Ou |
+bcftools norm --multiallelics +any --fasta-ref $ref -Ou |
 
 # We only want only SNPs and REFs not adjacent to indels
 bcftools filter --SnpGap 7 --include 'TYPE="snp"||TYPE="ref"' -Ou |
