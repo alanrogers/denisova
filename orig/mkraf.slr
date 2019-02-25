@@ -1,16 +1,27 @@
 #!/bin/bash
-#SBATCH -J mkraf
-#SBATCH --account=rogersa-kp
-#SBATCH --partition=rogersa-kp
+#SBATCH -J dmkraf
+#SBATCH --account=rogersa
+#SBATCH --partition=kingspeak
 #SBATCH --time=24:00:00
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH -o denisova.raf.gz
 #SBATCH -e mkraf.err
 
+# create scratch directory
+scrdir=/scratch/general/lustre/$USER/$SLURM_JOBID
+mkdir -p $scrdir
+
+# reference genome directory
+refdir=$HOME/group/rogers/data/hg19
+
+# copy ref to scratch and uncompress; also copy index file
+ref_fa=${scrdir}/hg19-sort.fa
+twoBitToFa ${refdir}/hg19-sort.2bit $ref_fa
+cp ${refdir}/hg19-sort.fa.fai $scrdir
+
 bed="../bed/DenisovaPinky.map35_99.MQ30.Cov.indels.TRF.bed.bgz"
 vcf="denisova.vcf.bgz"
-ref=$HOME/group/rogers/data/hg19/hg19-sort.fa.gz
 
 # keep only sites listed in bed file
 bedtools intersect -header -sorted -a ${vcf} -b ${bed} |
@@ -19,7 +30,7 @@ bedtools intersect -header -sorted -a ${vcf} -b ${bed} |
 bcftools annotate --remove "FORMAT/PL,^INFO/DP,INFO/MQ" -Ou |
 
 # Combine lines that refer to different alleles at a single position
-bcftools norm --multiallelics +any --fasta-ref $ref -Ou |
+bcftools norm --multiallelics +any --fasta-ref $ref_fa -Ou |
 
 # We only want only SNPs and REFs not adjacent to indels
 bcftools filter --SnpGap 7 --include 'TYPE="snp"||TYPE="ref"' -Ou |
@@ -29,3 +40,6 @@ bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' |
 
 # generate .raf.gz file
 raf | gzip -c
+
+# delete scratch files
+rm -rf $scrdir
