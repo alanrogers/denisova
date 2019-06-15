@@ -8,9 +8,11 @@ Cave in Croatia. Science, 358(6363):655-658.
 
     sbatch download.slr
 
-# Check checksums. All checksums are fine.
+# Check checksums.
 
     md5sum -c md5sums.txt
+
+All checksums are fine.
 
 # Generate vindija.raf
 
