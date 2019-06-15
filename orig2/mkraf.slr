@@ -1,0 +1,54 @@
+#!/bin/bash
+#SBATCH -J vmkraf
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=36:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o vindija.raf.gz
+#SBATCH -e mkraf.err
+
+# create scratch directory
+scrdir=/scratch/general/lustre/$USER/$SLURM_JOBID
+mkdir -p $scrdir
+
+# reference genome directory
+refdir=$HOME/group/rogers/data/hg19
+
+# copy ref to scratch and uncompress; also copy index file
+ref_fa=${scrdir}/hg19-sort.fa
+twoBitToFa ${refdir}/hg19-sort.2bit $ref_fa
+cp ${refdir}/hg19-sort.fa.fai $scrdir
+
+vfmt="chr%d_mq25_mapab100.vcf.gz\n"
+
+# The new bed file names begin with "chr". The old ones start with
+# integers.
+bfmt="../bed/chr%d_mask.bed.gz\n"
+
+# ensure consistent sort
+export LC_ALL=C
+
+# concatenate vcf files
+seq 22 | sort | xargs printf ${vfmt} | xargs bcftools concat |
+
+# keep only sites listed in bed files
+bedtools intersect -header -sorted -a "stdin" \
+-b <(seq 22 | sort | xargs printf ${bfmt} | xargs zcat) |
+
+# Combine lines that refer to different alleles at a single position
+bcftools norm --multiallelics +any --fasta-ref $ref_fa -Ou |
+
+# We only want only SNPs and REFs not adjacent to indels
+# This genome doesn't have INFO/MQ. File name suggests MQ>=25
+bcftools filter --SnpGap 7 --set-GTs '.' \
+    --include '(TYPE="snp"||TYPE="ref") & FMT/GQ>29' -Ou |
+
+# print in format required by raf
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' |
+
+# generate raf .raf.gz file
+raf | gzip -c
+
+# delete scratch files
+rm -rf $scrdir

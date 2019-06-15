@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -J getden
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=36:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o download.out
+#SBATCH -e download.err
+
+# Download data files, producing chr1_mq25_mapab100.vcf.gz, etc
+fmt="http://ftp.eva.mpg.de/neandertal/Vindija/VCF/Denisova/chr%s_mq25_mapab100.vcf.gz\n"
+seq 22 | xargs printf $fmt | xargs -n 1 wget
+
+# Download index files
+fmt="http://cdna.eva.mpg.de/neandertal/Vindija/VCF/Denisova/chr%s_mq25_mapab100.vcf.gz.tbi\n"
+seq 22 | xargs printf $fmt | xargs -n 1 wget
+
+# Download checksum file
+wget "http://cdna.eva.mpg.de/neandertal/Vindija/VCF/Denisova/md5sums.txt"
