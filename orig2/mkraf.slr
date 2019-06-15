@@ -22,8 +22,7 @@ cp ${refdir}/hg19-sort.fa.fai $scrdir
 
 vfmt="chr%d_mq25_mapab100.vcf.gz\n"
 
-# The new bed file names begin with "chr". The old ones start with
-# integers.
+# The new bed file names begin with "chr". The old one starts with "Den".
 bfmt="../bed/chr%d_mask.bed.gz\n"
 
 # ensure consistent sort
