@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH -J dgetbed
+#SBATCH --account=rogersa-kp
+#SBATCH --partition=rogersa-kp
+#SBATCH --time=36:00:00
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH -o getbed.out
+#SBATCH -e getbed.err
+
+# Download bed files, producing chr*_mask.bed.gz
+fmt="http://ftp.eva.mpg.de/neandertal/Vindija/FilterBed/Denisova/chr%s_mask.bed.gz\n"
+seq 22 | xargs printf $fmt | xargs -n 1 wget
