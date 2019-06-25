@@ -14,9 +14,6 @@ Cave in Croatia. Science, 358(6363):655-658.
 
 All checksums are fine.
 
-# Generate vindija.raf
+# Generate .raf
 
     sbatch mkraf.slr
-
-# raf.err output
-
