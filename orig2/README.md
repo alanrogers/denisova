@@ -17,3 +17,5 @@ All checksums are fine.
 # Generate .raf
 
     sbatch mkraf.slr
+
+Output is denisova.raf.gz.
