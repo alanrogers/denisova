@@ -2,7 +2,7 @@
 
 This directory records the steps I took to generate a .raf file from the
 high-coverage Denisovan genome described by Meyer et al. It has been
-superceded by the new assembly in ../orig2.
+superseded by the new assembly in ../orig2.
 
 # Download
 # Makes: DenisovaPinky.hg19_1000g.1.mod.vcf.gz,
